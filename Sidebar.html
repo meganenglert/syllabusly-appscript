@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <base target="_top">
+  <style>
+    body {
+      font-family: 'Google Sans', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+    
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .header h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+    
+    .header p {
+      margin: 8px 0 0 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    
+    .controls {
+      padding: 16px;
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background: #667eea;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 8px;
+      transition: background 0.2s;
+    }
+    
+    .btn:hover {
+      background: #5568d3;
+    }
+    
+    .btn-secondary {
+      background: white;
+      color: #667eea;
+      border: 1px solid #667eea;
+    }
+    
+    .btn-secondary:hover {
+      background: #f8f9fa;
+    }
+    
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    
+    .stats {
+      padding: 12px 16px;
+      background: white;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-around;
+      font-size: 13px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: #667eea;
+    }
+    
+    .stat-label {
+      color: #666;
+      margin-top: 4px;
+    }
+    
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+    
+    .spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .issues-container {
+      padding: 16px;
+      max-height: calc(100vh - 300px);
+      overflow-y: auto;
+    }
+    
+    .issue-card {
+      background: white;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border-left: 4px solid #ff9800;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .issue-card:hover {
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      transform: translateY(-2px);
+    }
+    
+    .issue-card.dismissed {
+      display: none;
+    }
+    
+    .issue-category {
+      display: inline-block;
+      background: #667eea;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    
+    .issue-text {
+      background: #fff3cd;
+      padding: 8px 10px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      font-family: monospace;
+      font-size: 12px;
+      word-break: break-word;
+    }
+    
+    .issue-message {
+      color: #333;
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .issue-suggestion {
+      background: #e8f5e9;
+      padding: 8px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #2e7d32;
+      margin-bottom: 12px;
+    }
+    
+    .learn-more {
+      color: #1976d2;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 11px;
+      display: inline-block;
+      margin-top: 4px;
+    }
+    
+    .learn-more:hover {
+      text-decoration: underline;
+    }
+    
+    .issue-actions {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .issue-btn {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-accept {
+      background: #4caf50;
+      color: white;
+    }
+    
+    .btn-accept:hover {
+      background: #45a049;
+    }
+    
+    .btn-dismiss {
+      background: #ffebee;
+      color: #c62828;
+    }
+    
+    .btn-dismiss:hover {
+      background: #ffcdd2;
+    }
+    
+    .no-replacement {
+      font-size: 11px;
+      color: #999;
+      font-style: italic;
+      text-align: center;
+      padding: 4px;
+    }
+    
+    .no-issues {
+      text-align: center;
+      padding: 40px 20px;
+      color: #666;
+    }
+    
+    .no-issues-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+    
+    .footer {
+      padding: 16px;
+      text-align: center;
+      font-size: 11px;
+      color: #999;
+      background: white;
+      border-top: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>📝 Syllabus Style Checker</h1>
+    <p>Improve with inclusive language</p>
+  </div>
+  
+  <div class="controls">
+    <button class="btn" onclick="runCheck()">🔍 Check Document</button>
+    <button class="btn btn-secondary" onclick="clearAll()">Clear All Highlights</button>
+  </div>
+  
+  <div class="stats" id="stats" style="display:none;">
+    <div class="stat">
+      <div class="stat-value" id="issueCount">0</div>
+      <div class="stat-label">Suggestions</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="categoryCount">0</div>
+      <div class="stat-label">Categories</div>
+    </div>
+  </div>
+  
+  <div id="content">
+    <div class="no-issues">
+      <div class="no-issues-icon">👋</div>
+      <p><strong>Welcome!</strong></p>
+      <p>Click "Check Document" above to scan your syllabus for suggestions on improving tone, accessibility, and student-centered language.</p>
+    </div>
+  </div>
+  
+  <div class="footer">
+    Click any suggestion card to highlight it in your document
+  </div>
+
+  <script>
+    let currentIssues = [];
+    
+    function runCheck() {
+      showLoading();
+      
+      google.script.run
+        .withSuccessHandler(displayIssues)
+        .withFailureHandler(showError)
+        .checkDocument();
+    }
+    
+    function showLoading() {
+      document.getElementById('content').innerHTML = `
+        <div class="loading">
+          <div class="spinner"></div>
+          <p>Analyzing your document...</p>
+        </div>
+      `;
+      document.getElementById('stats').style.display = 'none';
+    }
+    
+    function displayIssues(issues) {
+      currentIssues = issues;
+      
+      const content = document.getElementById('content');
+      const stats = document.getElementById('stats');
+      
+      if (issues.length === 0) {
+        content.innerHTML = `
+          <div class="no-issues">
+            <div class="no-issues-icon">✅</div>
+            <p><strong>Great job!</strong></p>
+            <p>No suggestions found. Your syllabus looks good!</p>
+          </div>
+        `;
+        stats.style.display = 'none';
+        return;
+      }
+      
+      // Show stats
+      const categories = new Set(issues.map(i => i.category));
+      document.getElementById('issueCount').textContent = issues.length;
+      document.getElementById('categoryCount').textContent = categories.size;
+      stats.style.display = 'flex';
+      
+      // Display issues
+      let html = '<div class="issues-container">';
+      
+      issues.forEach((issue, index) => {
+        const hasReplacement = issue.replacement && issue.replacement.trim().length > 0;
+        const hasLearnMore = issue.learnMoreUrl && issue.learnMoreUrl.trim().length > 0;
+        
+        html += `
+          <div class="issue-card" id="issue-${index}" onclick="navigateToIssue(${index})">
+            <span class="issue-category">${escapeHtml(issue.category)}</span>
+            <div class="issue-text">"${escapeHtml(issue.matchedText)}"</div>
+            <div class="issue-message">${escapeHtml(issue.message)}</div>
+            <div class="issue-suggestion">
+              💡 ${escapeHtml(issue.suggestion)}
+              ${hasLearnMore ? `<br><a href="${escapeHtml(issue.learnMoreUrl)}" target="_blank" class="learn-more" onclick="event.stopPropagation()">Learn more →</a>` : ''}
+            </div>
+            <div class="issue-actions" onclick="event.stopPropagation()">
+              ${hasReplacement ? 
+                `<button class="issue-btn btn-accept" onclick="acceptSuggestion(${index})">
+                  ✓ Accept: "${escapeHtml(issue.replacement)}"
+                </button>` : 
+                `<div class="no-replacement">No automatic replacement available</div>`
+              }
+              <button class="issue-btn btn-dismiss" onclick="dismissIssue(${index})">
+                ✗ Dismiss
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      
+      html += '</div>';
+      content.innerHTML = html;
+    }
+    
+    function navigateToIssue(index) {
+      const issue = currentIssues[index];
+      
+      google.script.run
+        .withSuccessHandler(function(success) {
+          if (success) {
+            console.log('Navigated to issue');
+          }
+        })
+        .withFailureHandler(showError)
+        .navigateToIssue(issue.matchedText);
+    }
+    
+    function acceptSuggestion(index) {
+      const issue = currentIssues[index];
+      
+      if (!issue.replacement) {
+        alert('No automatic replacement available for this suggestion.');
+        return;
+      }
+      
+      const card = document.getElementById('issue-' + index);
+      
+      google.script.run
+        .withSuccessHandler(function(success) {
+          if (success) {
+            // Remove the card from the display
+            card.classList.add('dismissed');
+            
+            // Update the count
+            const remainingIssues = document.querySelectorAll('.issue-card:not(.dismissed)').length;
+            document.getElementById('issueCount').textContent = remainingIssues;
+            
+            if (remainingIssues === 0) {
+              document.getElementById('content').innerHTML = `
+                <div class="no-issues">
+                  <div class="no-issues-icon">🎉</div>
+                  <p><strong>All done!</strong></p>
+                  <p>You've addressed all the suggestions!</p>
+                </div>
+              `;
+              document.getElementById('stats').style.display = 'none';
+            }
+          }
+        })
+        .withFailureHandler(showError)
+        .acceptSuggestion(issue.matchedText, issue.replacement);
+    }
+    
+    function dismissIssue(index) {
+      const issue = currentIssues[index];
+      const card = document.getElementById('issue-' + index);
+      
+      google.script.run
+        .withSuccessHandler(function(success) {
+          if (success) {
+            // Remove the card from the display
+            card.classList.add('dismissed');
+            
+            // Update the count
+            const remainingIssues = document.querySelectorAll('.issue-card:not(.dismissed)').length;
+            document.getElementById('issueCount').textContent = remainingIssues;
+            
+            if (remainingIssues === 0) {
+              document.getElementById('content').innerHTML = `
+                <div class="no-issues">
+                  <div class="no-issues-icon">✨</div>
+                  <p><strong>All clear!</strong></p>
+                  <p>You've reviewed all suggestions!</p>
+                </div>
+              `;
+              document.getElementById('stats').style.display = 'none';
+            }
+          }
+        })
+        .withFailureHandler(showError)
+        .dismissIssue(issue.matchedText);
+    }
+    
+    function clearAll() {
+      google.script.run
+        .withSuccessHandler(function() {
+          document.getElementById('content').innerHTML = `
+            <div class="no-issues">
+              <div class="no-issues-icon">✨</div>
+              <p><strong>Highlights cleared!</strong></p>
+              <p>All highlighting has been removed from your document.</p>
+            </div>
+          `;
+          document.getElementById('stats').style.display = 'none';
+          currentIssues = [];
+        })
+        .withFailureHandler(showError)
+        .clearHighlights();
+    }
+    
+    function showError(error) {
+      document.getElementById('content').innerHTML = `
+        <div class="no-issues">
+          <div class="no-issues-icon">⚠️</div>
+          <p><strong>Error</strong></p>
+          <p>${escapeHtml(error.message)}</p>
+        </div>
+      `;
+    }
+    
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+  </script>
+</body>
+</html>
