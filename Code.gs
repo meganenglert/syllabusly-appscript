@@ -558,7 +558,7 @@ const SYLLABUS_RULES = [
     suggestion: "Affirm your willingness to coordinate accommodations through proper channels",
     category: "accessibility",
     replacement: "please contact me to coordinate accommodations",
-    learnMoreUrl: "https://www.ahead.org/professional-resources/inclusive-syllabi"
+    learnMoreUrl: "https://anthrodendum.org/2018/08/13/check-your-syllabus-101-disability-access-statements/"
   },
   {
     pattern: /\b(?:you must|students must|you need to|students need to) (?:provide|submit|bring|show|present) (?:full|complete|official|formal|all) documentation (?:immediately|right away|before|upfront|in advance)\b/gi,
@@ -566,7 +566,7 @@ const SYLLABUS_RULES = [
     suggestion: "Try 'please connect with disability services and contact me to discuss next steps'",
     category: "accessibility",
     replacement: "please connect with disability services and contact me to coordinate support",
-    learnMoreUrl: "https://www.ahead.org/professional-resources/inclusive-syllabi"
+    learnMoreUrl: "https://anthrodendum.org/2018/08/13/check-your-syllabus-101-disability-access-statements/"
   },
 
   // ── Grading power dynamics ────────────────────────────────────────────────────
@@ -576,7 +576,7 @@ const SYLLABUS_RULES = [
     suggestion: "Try 'I may' or state the specific conditions directly",
     category: "tone",
     replacement: "I may",
-    learnMoreUrl: "https://www.chronicle.com/article/how-to-make-your-teaching-more-inclusive"
+    learnMoreUrl: "https://files.eric.ed.gov/fulltext/EJ1139844.pdf"
   },
   {
     pattern: /\bat (?:my|the instructor's?|the professor's?) (?:sole )?discretion\b/gi,
@@ -584,7 +584,7 @@ const SYLLABUS_RULES = [
     suggestion: "Be specific about decision criteria or say 'on a case-by-case basis'",
     category: "tone",
     replacement: "on a case-by-case basis",
-    learnMoreUrl: "https://www.chronicle.com/article/how-to-make-your-teaching-more-inclusive"
+    learnMoreUrl: "https://files.eric.ed.gov/fulltext/EJ1139844.pdf"
   },
   {
     pattern: /\bno (?:grade|assignment|exam|quiz) (?:disputes?|complaints?|challenges?|arguments?|contests?|appeals?)\b/gi,
@@ -592,7 +592,7 @@ const SYLLABUS_RULES = [
     suggestion: "Set a clear process: 'questions about grades should be raised within X days with a written explanation'",
     category: "flexibility",
     replacement: "questions about grades should be raised within",
-    learnMoreUrl: "https://www.insidehighered.com/advice/2020/08/26/how-create-syllabus-can-support-student-success-opinion"
+    learnMoreUrl: "https://idc.ls.wisc.edu/guides/make-your-syllabus-more-inclusive/#flex"
   },
 
   // ── Stigmatizing student labels ───────────────────────────────────────────────
@@ -602,7 +602,7 @@ const SYLLABUS_RULES = [
     suggestion: "Try 'students who would benefit from additional support' or 'students working to develop their skills'",
     category: "tone",
     replacement: "students who would benefit from additional support",
-    learnMoreUrl: "https://www.brown.edu/sheridan/teaching-learning-resources/inclusive-teaching/approaches"
+    learnMoreUrl: "https://idc.ls.wisc.edu/guides/make-your-syllabus-more-inclusive/#deficit"
   },
   {
     pattern: /\bstudents (?:who )?(?:don't know|do not know|lack|are missing|are behind in|have gaps in|are deficient in)\b/gi,
@@ -610,7 +610,7 @@ const SYLLABUS_RULES = [
     suggestion: "Reframe around growth: 'students will have opportunities to build skills in'",
     category: "tone",
     replacement: "students will have opportunities to build skills in",
-    learnMoreUrl: "https://www.chronicle.com/article/how-to-make-your-teaching-more-inclusive"
+    learnMoreUrl: "https://idc.ls.wisc.edu/guides/make-your-syllabus-more-inclusive/#deficit"
   },
 
   // ── Inclusive pronouns ────────────────────────────────────────────────────────
@@ -620,7 +620,7 @@ const SYLLABUS_RULES = [
     suggestion: "Use singular 'they' or restructure the sentence to be inclusive",
     category: "inclusion",
     replacement: "they",
-    learnMoreUrl: "https://www.apa.org/style-grammar-guidelines/grammar/singular-they"
+    learnMoreUrl: "https://owl.purdue.edu/owl/general_writing/grammar/pronouns/gendered_pronouns_and_singular_they.html"
   },
   {
     pattern: /\bhis\/her\b/gi,
@@ -628,7 +628,7 @@ const SYLLABUS_RULES = [
     suggestion: "Use 'their' or restructure the sentence to be inclusive",
     category: "inclusion",
     replacement: "their",
-    learnMoreUrl: "https://www.apa.org/style-grammar-guidelines/grammar/singular-they"
+    learnMoreUrl: "https://owl.purdue.edu/owl/general_writing/grammar/pronouns/gendered_pronouns_and_singular_they.html"
   },
   {
     pattern: /\bhim\/her\b/gi,
@@ -636,7 +636,7 @@ const SYLLABUS_RULES = [
     suggestion: "Use 'them' or restructure the sentence to be inclusive",
     category: "inclusion",
     replacement: "them",
-    learnMoreUrl: "https://www.apa.org/style-grammar-guidelines/grammar/singular-they"
+    learnMoreUrl: "https://owl.purdue.edu/owl/general_writing/grammar/pronouns/gendered_pronouns_and_singular_they.html"
   },
   {
     pattern: /\b(?:he or she|she or he)\b/gi,
@@ -644,7 +644,7 @@ const SYLLABUS_RULES = [
     suggestion: "Use singular 'they' or restructure the sentence to be inclusive",
     category: "inclusion",
     replacement: "they",
-    learnMoreUrl: "https://www.apa.org/style-grammar-guidelines/grammar/singular-they"
+    learnMoreUrl: "https://owl.purdue.edu/owl/general_writing/grammar/pronouns/gendered_pronouns_and_singular_they.html"
   },
   {
     pattern: /\b(?:his or her|her or his)\b/gi,
@@ -652,7 +652,7 @@ const SYLLABUS_RULES = [
     suggestion: "Use 'their' or restructure the sentence to be inclusive",
     category: "inclusion",
     replacement: "their",
-    learnMoreUrl: "https://www.apa.org/style-grammar-guidelines/grammar/singular-they"
+    learnMoreUrl: "https://owl.purdue.edu/owl/general_writing/grammar/pronouns/gendered_pronouns_and_singular_they.html"
   },
 
   // ── Support resources ─────────────────────────────────────────────────────────
@@ -662,7 +662,7 @@ const SYLLABUS_RULES = [
     suggestion: "Try 'you will benefit from' or 'please make use of' for clearer guidance",
     category: "student-support",
     replacement: "you will benefit from",
-    learnMoreUrl: "https://www.chronicle.com/article/how-to-make-your-teaching-more-inclusive"
+    learnMoreUrl: "https://files.eric.ed.gov/fulltext/EJ1139844.pdf"
   },
   {
     pattern: /\b(?:seek|get|find|ask for|look for) (?:help|support|assistance|tutoring|extra help) (?:if|when) (?:you need it|necessary|needed|you're struggling|you fall behind)\b/gi,
@@ -670,7 +670,7 @@ const SYLLABUS_RULES = [
     suggestion: "Try 'office hours are a great place to deepen your understanding' to normalize support use",
     category: "student-support",
     replacement: "please use office hours to discuss questions and deepen your understanding",
-    learnMoreUrl: "https://www.chronicle.com/article/how-to-make-your-teaching-more-inclusive"
+    learnMoreUrl: "https://files.eric.ed.gov/fulltext/EJ1139844.pdf"
   }
 ];
 
